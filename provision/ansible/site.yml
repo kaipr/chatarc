@@ -1,0 +1,12 @@
+---
+- hosts: all
+  vars:
+    - ruby_version: 2.2
+    - ruby_version_patch: 0
+    - database_name: chatarc_development
+    - database_user: chatarc
+    - database_password: chatarc
+  roles:
+    - { role: common }
+    - { role: ruby }
+    - { role: postgresql }

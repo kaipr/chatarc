@@ -1,0 +1,37 @@
+---
+- name: Add PostgreSQL APT key
+  apt_key: url=https://www.postgresql.org/media/keys/ACCC4CF8.asc
+  sudo: yes
+
+- name: Add PostgreSQL APT repository
+  apt_repository: repo='deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main' state=present
+  sudo: yes
+
+- name: Install postgresql, libpq-dev, python-psycopg2
+  apt: pkg={{item}} state=latest update_cache=true
+  sudo: yes
+  with_items:
+    - postgresql
+    - libpq-dev
+    - python-psycopg2
+
+- name: Copy pg_hba.conf
+  copy: src=pg_hba.conf dest=/etc/postgresql/9.4/main/pg_hba.conf
+  sudo: yes
+
+- name: Restart PostgreSQL
+  service: name=postgresql state=restarted
+  sudo: yes
+
+- name: Create {{database_name}} database
+  sudo: yes
+  sudo_user: postgres
+  postgresql_db: name={{database_name}}
+
+- name: Create user {{database_user}} on {{database_name}}
+  sudo: yes
+  sudo_user: postgres
+  postgresql_user: db={{database_name}}
+                   name={{database_user}}
+                   password={{database_password}}
+                   role_attr_flags=CREATEDB,NOSUPERUSER
