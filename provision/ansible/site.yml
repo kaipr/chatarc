@@ -10,3 +10,4 @@
     - { role: common }
     - { role: ruby }
     - { role: postgresql }
+    - { role: web }
