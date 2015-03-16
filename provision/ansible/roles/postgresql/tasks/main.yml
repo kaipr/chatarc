@@ -34,4 +34,4 @@
   postgresql_user: db={{database_name}}
                    name={{database_user}}
                    password={{database_password}}
-                   role_attr_flags=CREATEDB,NOSUPERUSER
+                   role_attr_flags=SUPERUSER
