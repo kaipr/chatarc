@@ -11,4 +11,4 @@
     - ruby2.2-dev
 
 - name: Install bundler gem
-  gem: name=bundler state=latest
+  gem: name=bundler state=latest user_install=no
