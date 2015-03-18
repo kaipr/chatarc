@@ -1,13 +1,9 @@
-require "test_helper"
+require 'test_helper'
 
-class MessageTest < ActiveSupport::TestCase
+describe Message do
+  let(:message_obj) { Message.new }
 
-  def message
-    @message ||= Message.new
+  it 'must be valid' do
+    message_obj.must_be :valid?
   end
-
-  def test_valid
-    assert message.valid?
-  end
-
 end

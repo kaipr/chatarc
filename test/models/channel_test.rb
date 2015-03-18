@@ -1,13 +1,9 @@
-require "test_helper"
+require 'test_helper'
 
-class ChannelTest < ActiveSupport::TestCase
+describe Channel do
+  let(:channel) { Channel.new(name: 'somechannel') }
 
-  def channel
-    @channel ||= Channel.new(name: 'somechannel')
+  it 'must be valid' do
+    channel.must_be :valid?
   end
-
-  def test_valid
-    assert channel.valid?
-  end
-
 end

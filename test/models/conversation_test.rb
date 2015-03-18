@@ -1,13 +1,9 @@
-require "test_helper"
+require 'test_helper'
 
-class ConversationTest < ActiveSupport::TestCase
+describe Conversation do
+  let(:conversation) { Conversation.new }
 
-  def conversation
-    @conversation ||= Conversation.new
+  it 'must be valid' do
+    conversation.must_be :valid?
   end
-
-  def test_valid
-    assert conversation.valid?
-  end
-
 end

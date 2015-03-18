@@ -1,13 +1,9 @@
-require "test_helper"
+require 'test_helper'
 
-class ParticipantTest < ActiveSupport::TestCase
+describe Participant do
+  let(:participant) { Participant.new(name: 'Chris') }
 
-  def participant
-    @participant ||= Participant.new(name: 'Chris')
+  it 'must be valid' do
+    participant.must_be :valid?
   end
-
-  def test_valid
-    assert participant.valid?
-  end
-
 end
