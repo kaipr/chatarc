@@ -10,11 +10,14 @@ require 'minitest/rails/capybara'
 class ActiveSupport::TestCase
   ActiveRecord::Migration.check_pending!
 
-  # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
-  #
-  # Note: You'll currently still have to declare fixtures explicitly in integration tests
-  # -- they do not yet inherit this setting
   fixtures :all
 
-  # Add more helper methods to be used by all tests here...
+  def set_form_authenticity_token
+    session[:_csrf_token] = SecureRandom.base64(32)
+  end
+
+  def post_with_token(symbol, args_hash)
+    args_hash.merge!(authenticity_token: set_form_authenticity_token)
+    post symbol, args_hash
+  end
 end
