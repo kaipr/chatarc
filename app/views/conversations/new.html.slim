@@ -1,0 +1,13 @@
+h1 Add conversation
+
+= form_for @conversation, html: { class: 'pure-form pure-form-aligned' } do |f|
+  .pure-control-group
+    = f.label :title
+    = f.text_field :title, class: 'pure-u-3-4'
+
+  .pure-control-group
+    = f.label :note
+    = f.text_area :note, class: 'pure-u-3-4'
+
+  .pure-controls
+    = f.submit 'Create Conversation', class: 'pure-button pure-button-primary'

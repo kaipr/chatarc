@@ -1,0 +1,13 @@
+h1 Conversations
+
+ul.conversations
+  - @conversations.each do |conversation|
+    li
+      h4
+        = link_to conversation.title, conversation_path(conversation)
+        - if conversation.occured_on.present?
+          span.occured_on= " on #{conversation.occured_on}"
+      - if conversation.note.present?
+        p= conversation.note
+
+= link_to 'Add Conversation', new_conversation_path, class: 'pure-button pure-button-primary'
