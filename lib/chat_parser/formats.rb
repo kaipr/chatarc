@@ -1,0 +1,5 @@
+module ChatParser
+  module Formats
+    GENERIC = /(?:(?:\[(?<time>\d{2}:\d{2})\](?:\s)?)?(?:\[(?<channel>[^\[\]]+?)\])?(?:\s)?(?<whisper>\w+ )?(?:\[(?:\*)?(?<name>[^\[\]]+?)\]:)? (?<message>.+)|(?<note>.+))/
+  end
+end
