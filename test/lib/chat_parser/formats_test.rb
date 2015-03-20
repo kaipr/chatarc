@@ -47,5 +47,12 @@ describe ChatParser::Formats do
       match[:name].must_equal    'Max'
       match[:message].must_equal 'This is a message'
     end
+
+    it 'must match a chat line without anything as note' do
+      line = 'Chat with Foo on 2015-01-12'
+
+      match = line.match ChatParser::Formats::GENERIC
+      match[:note].must_equal 'Chat with Foo on 2015-01-12'
+    end
   end
 end
