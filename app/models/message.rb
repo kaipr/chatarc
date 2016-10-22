@@ -1,5 +1,5 @@
 class Message < ApplicationRecord
-  belongs_to :conversation
-  belongs_to :channel
-  belongs_to :participant
+  belongs_to :conversation, touch: true
+  belongs_to :channel, touch: true
+  belongs_to :participant, touch: true
 end
