@@ -1,8 +1,6 @@
 ---
-# Using the synced folder as destination directly returns a "Text file busy" error
-# https://github.com/ansible/ansible/issues/9526
-- name: Generate database.yml
-  template: src=database.yml.j2 dest=/tmp/database.yml
+- name: Generate .env
+  template: src=env.j2 dest=/vagrant/.env
 
-- name: Move generated database.yml to project
-  command: mv /tmp/database.yml /vagrant/config
+- name: Generate .env.test
+  template: src=env.test.j2 dest=/vagrant/.env.test
