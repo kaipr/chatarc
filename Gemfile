@@ -17,6 +17,8 @@ gem "jquery-rails"
 gem "puma"
 
 group :development, :test do
+  gem "dotenv-rails"
+
   gem "byebug"
   gem "web-console", "~> 2.0"
 
