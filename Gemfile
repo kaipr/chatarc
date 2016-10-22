@@ -29,6 +29,12 @@ end
 
 group :test do
   gem "capybara-webkit"
+  gem "database_cleaner"
+  gem "formulaic"
+  gem "shoulda-matchers"
+  gem "simplecov", require: false
+  gem "timecop"
+  gem "webmock"
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
