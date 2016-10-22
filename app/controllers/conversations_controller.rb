@@ -4,7 +4,7 @@ class ConversationsController < ApplicationController
   end
 
   def show
-    @conversation = Conversation.includes(messages: [:channel, :participant]).find(params[:id])
+    @conversation = Conversation.with_messages.find(params[:id])
   end
 
   def new
@@ -15,8 +15,8 @@ class ConversationsController < ApplicationController
     @conversation = Conversation.new(conversation_params)
 
     if @conversation.save
-      flash[:notice] = 'Successfully created a new conversation'
-      redirect_to conversation_path(@conversation)
+      redirect_to conversation_path(@conversation),
+                  notice: "Successfully created a new conversation"
     else
       render action: :new
     end
