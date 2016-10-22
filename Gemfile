@@ -12,6 +12,7 @@ gem "jquery-rails"
 gem "puma"
 
 group :development do
+  gem "spring"
   gem "web-console"
 end
 
