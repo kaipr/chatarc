@@ -13,6 +13,7 @@ gem "puma"
 
 group :development do
   gem "spring"
+  gem "spring-commands-rspec"
   gem "web-console"
 end
 
@@ -22,11 +23,12 @@ group :development, :test do
   gem "pry-byebug"
   gem "pry-rails"
 
-  gem "minitest-rails"
+  gem "rspec-rails", "~> 3.5"
+  gem "factory_girl_rails"
 end
 
 group :test do
-  gem "minitest-rails-capybara"
+  gem "capybara-webkit"
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]

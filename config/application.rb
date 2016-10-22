@@ -13,7 +13,7 @@ module Chatarc
     # -- all .rb files in that directory are automatically loaded.
 
     config.generators do |g|
-      g.test_framework :minitest, spec: true
+      g.test_framework :rspec
     end
   end
 end

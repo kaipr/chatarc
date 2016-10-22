@@ -42,21 +42,30 @@ GEM
     arel (7.1.4)
     builder (3.2.2)
     byebug (9.0.6)
-    capybara (2.10.1)
+    capybara (2.7.1)
       addressable
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-webkit (1.11.1)
+      capybara (>= 2.3.0, < 2.8.0)
+      json
     coderay (1.1.1)
     concurrent-ruby (1.0.2)
     debug_inspector (0.0.2)
+    diff-lcs (1.2.5)
     dotenv (2.1.1)
     dotenv-rails (2.1.1)
       dotenv (= 2.1.1)
       railties (>= 4.0, < 5.1)
     erubis (2.7.0)
+    factory_girl (4.7.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.7.0)
+      factory_girl (~> 4.7.0)
+      railties (>= 3.0.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -64,6 +73,7 @@ GEM
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
+    json (2.0.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -74,20 +84,6 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.9.1)
-    minitest-capybara (0.8.2)
-      capybara (~> 2.2)
-      minitest (~> 5.0)
-      rake
-    minitest-metadata (0.6.0)
-      minitest (>= 4.7, < 6.0)
-    minitest-rails (3.0.0)
-      minitest (~> 5.8)
-      railties (~> 5.0)
-    minitest-rails-capybara (3.0.0)
-      capybara (~> 2.7)
-      minitest-capybara (~> 0.8)
-      minitest-metadata (~> 0.6)
-      minitest-rails (~> 3.0)
     nio4r (1.2.1)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
@@ -129,6 +125,23 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (11.3.0)
+    rspec-core (3.5.4)
+      rspec-support (~> 3.5.0)
+    rspec-expectations (3.5.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-mocks (3.5.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-rails (3.5.2)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 3.5.0)
+      rspec-expectations (~> 3.5.0)
+      rspec-mocks (~> 3.5.0)
+      rspec-support (~> 3.5.0)
+    rspec-support (3.5.0)
     sass (3.4.22)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -142,6 +155,8 @@ GEM
     slop (3.6.0)
     spring (2.0.0)
       activesupport (>= 4.2)
+    spring-commands-rspec (1.0.4)
+      spring (>= 0.9.1)
     sprockets (3.7.0)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -170,18 +185,20 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  capybara-webkit
   dotenv-rails
+  factory_girl_rails
   jquery-rails
-  minitest-rails
-  minitest-rails-capybara
   pg
   pry-byebug
   pry-rails
   puma
   rails (~> 5.0.0)
+  rspec-rails (~> 3.5)
   sass-rails (~> 5.0)
   slim
   spring
+  spring-commands-rspec
   tzinfo-data
   web-console
 
