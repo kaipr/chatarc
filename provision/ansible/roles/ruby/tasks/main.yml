@@ -3,12 +3,12 @@
   apt_repository: repo='ppa:brightbox/ruby-ng'
   sudo: yes
 
-- name: Install Ruby 2.2
+- name: Install Ruby 2.3
   apt: pkg={{item}} update_cache=true
   sudo: yes
   with_items:
-    - ruby2.2
-    - ruby2.2-dev
+    - ruby2.3
+    - ruby2.3-dev
 
 - name: Install bundler gem
   gem: name=bundler state=latest user_install=no

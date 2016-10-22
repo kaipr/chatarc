@@ -11,12 +11,12 @@
   apt: pkg={{item}} state=latest update_cache=true
   sudo: yes
   with_items:
-    - postgresql
+    - postgresql-9.6
     - libpq-dev
     - python-psycopg2
 
 - name: Copy pg_hba.conf
-  copy: src=pg_hba.conf dest=/etc/postgresql/9.4/main/pg_hba.conf
+  copy: src=pg_hba.conf dest=/etc/postgresql/9.6/main/pg_hba.conf
   sudo: yes
 
 - name: Restart PostgreSQL
