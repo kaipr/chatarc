@@ -8,43 +8,51 @@ module ChatParser
       @channels = {}
 
       @messages = []
-      @note = ''
+      @note = ""
     end
 
     def parse(chat)
-      format_names = @format.names.map(&:to_sym)
-
-      chat.scan(@format).each do |line|
-        # OPTIMIZE there might be a better way to make scan use named captures
-        line = Hash[format_names.zip(line)]
-
-        if line[:name].present? && line[:message].present?
-          @messages << build_message(line)
-        else
-          @note += "#{line[:note]}\n"
-        end
-      end
+      chat.scan(@format).each { |line| process_line(line) }
 
       self
     end
 
     def build_message(args)
-      Message.new({
+      Message.new(
         channel:     get_channel(args[:channel]),
         participant: get_participant(args[:name]),
         content:     args[:message],
-        sent_at:     args[:time]
-      })
+        sent_at:     args[:time],
+      )
     end
 
     def get_channel(name)
-      return unless name.present?
+      return if name.blank?
+
       @channels[name] ||= Channel.find_or_initialize_by(name: name)
     end
 
     def get_participant(name)
-      return unless name.present?
+      return if name.blank?
+
       @participants[name] ||= Participant.find_or_initialize_by(name: name)
+    end
+
+    private
+
+    def process_line(line)
+      # OPTIMIZE there might be a better way to make scan use named captures
+      line = Hash[format_names.zip(line)]
+
+      if line[:name].present? && line[:message].present?
+        @messages << build_message(line)
+      else
+        @note += "#{line[:note]}\n"
+      end
+    end
+
+    def format_names
+      @_format_name ||= @format.names.map(&:to_sym)
     end
   end
 end
