@@ -14,6 +14,7 @@ describe Conversation, type: :model do
 
       expect(conversation.note).to eq "Some content\n"
       expect(conversation.messages.count).to eq 2
+      expect(conversation.messages.first.content).to eq "this is so bar"
     end
 
     it "adds parsed note to existing" do
