@@ -5,6 +5,13 @@ require "chat_parser/formats"
 describe ChatParser::Parser do
   subject(:parser) { ChatParser::Parser.new(ChatParser::Formats::GENERIC) }
 
+  describe ".new" do
+    it "has default values" do
+      expect(parser.messages).to eq []
+      expect(parser.note).to eq ""
+    end
+  end
+
   describe "#parse" do
     let(:chat) do
       <<-END.gsub(/^\s+\|/, "")
@@ -21,8 +28,11 @@ describe ChatParser::Parser do
       expect(parser.note).to eq "Chat between Max and Julie\n"
     end
 
-    it "returns self to allow chaining" do
-      expect(parser.parse("")).to eq parser
+    it "does nothing if given nothing" do
+      parser.parse nil
+
+      expect(parser.messages.size).to eq 0
+      expect(parser.note).to eq ""
     end
   end
 

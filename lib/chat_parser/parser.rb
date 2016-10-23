@@ -12,9 +12,9 @@ module ChatParser
     end
 
     def parse(chat)
-      chat.scan(@format).each { |line| process_line(line) }
+      return if chat.blank?
 
-      self
+      chat.scan(@format).each { |line| process_line(line) }
     end
 
     def build_message(args)
