@@ -1,3 +1,5 @@
+require_relative "parse_result"
+
 module ChatParser
   class Parser
     attr_reader :messages, :note
@@ -6,15 +8,14 @@ module ChatParser
       @format = format
       @participants = {}
       @channels = {}
-
-      @messages = []
-      @note = ""
     end
 
     def parse(chat)
-      return if chat.blank?
+      result = ChatParser::ParseResult.new
 
-      chat.scan(@format).each { |line| process_line(line) }
+      process_chat(chat, result) if chat.present?
+
+      result
     end
 
     def build_message(args)
@@ -40,14 +41,20 @@ module ChatParser
 
     private
 
-    def process_line(line)
+    def process_chat(chat, result)
+      chat.scan(@format).each { |line| process_line(line, result) }
+
+      result
+    end
+
+    def process_line(line, result)
       # OPTIMIZE there might be a better way to make scan use named captures
       line = Hash[format_names.zip(line)]
 
       if line[:name].present? && line[:message].present?
-        @messages << build_message(line)
+        result.messages << build_message(line)
       else
-        @note += "#{line[:note]}\n"
+        result.note += "#{line[:note]}\n"
       end
     end
 

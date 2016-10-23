@@ -5,34 +5,24 @@ require "chat_parser/formats"
 describe ChatParser::Parser do
   subject(:parser) { ChatParser::Parser.new(ChatParser::Formats::GENERIC) }
 
-  describe ".new" do
-    it "has default values" do
-      expect(parser.messages).to eq []
-      expect(parser.note).to eq ""
-    end
-  end
-
   describe "#parse" do
-    let(:chat) do
-      <<-END.gsub(/^\s+\|/, "")
+    it "always returns a ParserResult" do
+      result = parser.parse nil
+
+      expect(result).to be_a ChatParser::ParseResult
+    end
+
+    it "parses the chat into messages and a note" do
+      chat = <<-END.gsub(/^\s+\|/, "")
       |Chat between Max and Julie
       |[10:23] [General] [Max]: Hello Julie
       |[10:23] [General] [Julie]: Hey max!
       END
-    end
 
-    it "parses the chat into messages and a note" do
-      parser.parse chat
+      result = parser.parse(chat)
 
-      expect(parser.messages.size).to eq 2
-      expect(parser.note).to eq "Chat between Max and Julie\n"
-    end
-
-    it "does nothing if given nothing" do
-      parser.parse nil
-
-      expect(parser.messages.size).to eq 0
-      expect(parser.note).to eq ""
+      expect(result.messages.size).to eq 2
+      expect(result.note).to eq "Chat between Max and Julie\n"
     end
   end
 
